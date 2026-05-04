@@ -1987,18 +1987,18 @@ html, body {
   border: 1px solid rgba(249, 115, 22, 0.3);
   border-left: 4px solid var(--orange);
   border-radius: 14px;
-  padding: 24px 32px;
+  padding: 16px 26px;
   display: flex;
   align-items: center;
-  gap: 28px;
-  margin-top: 36px;
+  gap: 24px;
+  margin-top: 18px;
   text-align: left;
   max-width: 720px;
 }
 
 .stat-anchor .stat-anchor-num {
   font-family: var(--font-heading);
-  font-size: 3.2em;
+  font-size: 2.6em;
   font-weight: 900;
   color: var(--orange);
   line-height: 1;
@@ -2029,8 +2029,8 @@ html, body {
 }
 
 .gtm-not h1 {
-  font-size: 2.4em;
-  margin-bottom: 32px;
+  font-size: 2.1em;
+  margin-bottom: 18px;
 }
 
 .gtm-not h1 .not-word {
@@ -2043,7 +2043,7 @@ html, body {
   gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 28px;
+  margin-bottom: 10px;
 }
 
 .crossed-term {
@@ -2062,10 +2062,10 @@ html, body {
 
 .gtm-reveal {
   font-family: var(--font-heading);
-  font-size: 1.4em;
+  font-size: 1.25em;
   font-weight: 800;
   color: var(--white);
-  margin-top: 16px;
+  margin-top: 8px;
   line-height: 1.3;
   max-width: 900px;
 }
@@ -2077,7 +2077,7 @@ html, body {
 .gtm-reveal-sub {
   font-size: 0.65em;
   color: var(--white-dim);
-  margin-top: 16px;
+  margin-top: 10px;
   font-weight: 500;
 }
 

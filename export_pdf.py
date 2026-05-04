@@ -29,6 +29,9 @@ async def export_slides():
         await page.goto(url, wait_until="networkidle")
         await page.wait_for_timeout(3000)
 
+        # Disable fragment animations so all fragment content is visible from the start
+        await page.evaluate("Reveal.configure({ fragments: false })")
+
         # Get total slide count from DOM
         total = await page.evaluate("document.querySelectorAll('.reveal .slides > section').length")
         print(f"Total slides: {total}")
@@ -37,6 +40,25 @@ async def export_slides():
         for i in range(total):
             await page.goto(f"{url}#/{i}", wait_until="networkidle")
             await page.wait_for_timeout(800)
+
+            # Re-apply config (URL navigation can reset state) and force-show all fragments
+            await page.evaluate(f"""() => {{
+                Reveal.configure({{ fragments: false }});
+                document.querySelectorAll('.fragment').forEach(f => f.classList.add('visible'));
+
+                // If the current slide's content overflows the configured slide height,
+                // apply a CSS zoom factor so it fits without cropping.
+                const slide = document.querySelector('.present');
+                if (slide) {{
+                    slide.style.zoom = '';  // reset any prior zoom
+                    const overflow = slide.scrollHeight - {height};
+                    if (overflow > 0) {{
+                        slide.style.zoom = ({height} / slide.scrollHeight).toFixed(3);
+                    }}
+                }}
+            }}""")
+            await page.wait_for_timeout(200)
+
             screenshot_path = screenshots_dir / f"slide_{i:03d}.png"
             await page.screenshot(path=str(screenshot_path))
             print(f"  Captured slide {i + 1}/{total}")
