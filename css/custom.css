@@ -1138,6 +1138,357 @@ html, body {
   color: var(--white-dim);
 }
 
+/* === Slide 20: Crossing the Chasm in Practice === */
+.chasm-sub {
+  font-size: 0.55em;
+  color: var(--white-dim);
+  text-align: center;
+  max-width: 880px;
+  margin: 0 auto 14px;
+  font-style: italic;
+}
+.chasm-shift {
+  display: grid;
+  grid-template-columns: 1fr 56px 1fr;
+  align-items: stretch;
+  gap: 0;
+  margin: 12px auto 12px;
+  width: 96%;
+  max-width: 1100px;
+}
+.chasm-side {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 16px 20px;
+  text-align: left;
+}
+.chasm-side--early {
+  border-left: 3px solid #EF4444;
+}
+.chasm-side--majority {
+  border-left: 3px solid var(--orange);
+}
+.chasm-side-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.45em;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.chasm-side--early .chasm-side-label { color: #EF4444; }
+.chasm-side--majority .chasm-side-label { color: var(--orange); }
+.chasm-side-quote {
+  font-size: 0.7em;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--white);
+  margin: 0 0 10px;
+}
+.chasm-side-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.chasm-side-list li {
+  font-size: 0.5em;
+  line-height: 1.45;
+  color: var(--white-dim);
+}
+.chasm-side-list li strong {
+  color: var(--white);
+  font-weight: 700;
+}
+.chasm-side-list--questions {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.chasm-side-list--questions li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--white);
+  font-size: 0.52em;
+  line-height: 1.45;
+}
+.chasm-side-list--questions li::before {
+  content: none;
+}
+.q-key {
+  font-weight: 800;
+}
+.chasm-side--early .q-key {
+  color: #EF4444;
+}
+.chasm-side--majority .q-key {
+  color: var(--orange);
+}
+.chasm-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  color: var(--orange);
+  font-weight: 800;
+}
+.chasm-bottom-line {
+  margin: 10px auto 4px;
+  font-family: var(--font-heading);
+  font-size: 0.85em;
+  font-weight: 800;
+  color: var(--orange);
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+.chasm-bottom-note {
+  margin: 0;
+  font-size: 0.45em;
+  color: var(--white-dim);
+  text-align: center;
+  font-style: italic;
+  max-width: 920px;
+  margin: 0 auto;
+  line-height: 1.45;
+}
+
+/* === Slide 21: Where is AI on the Chasm? (interactive) === */
+.aichasm-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 6px auto 8px;
+  width: 96%;
+  max-width: 1080px;
+}
+.aichasm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 8px 14px;
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: 0.45em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.aichasm-btn:hover {
+  background: rgba(255, 122, 41, 0.12);
+  border-color: rgba(255, 122, 41, 0.5);
+}
+.aichasm-btn.active {
+  background: rgba(255, 122, 41, 0.18);
+  border-color: var(--orange);
+  color: var(--white);
+  box-shadow: 0 0 18px rgba(255, 122, 41, 0.3);
+}
+.aichasm-btn-emoji {
+  font-size: 1.2em;
+  line-height: 1;
+}
+.aichasm-chart {
+  width: 92%;
+  max-width: 880px;
+  margin: 6px auto 4px;
+}
+.aichasm-chart svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+/* Marker (dot + glow + handwriting label) */
+.aichasm-dot-glow {
+  fill: rgba(255, 122, 41, 0.25);
+  filter: blur(2px);
+  transition: cx 0.5s ease, cy 0.5s ease;
+}
+.aichasm-dot {
+  fill: var(--orange);
+  stroke: var(--white);
+  stroke-width: 2;
+  transition: cx 0.5s ease, cy 0.5s ease;
+  filter: drop-shadow(0 0 6px rgba(255, 122, 41, 0.7));
+}
+.aichasm-here {
+  fill: var(--orange);
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.4s ease, x 0.5s ease, y 0.5s ease;
+}
+/* Hide marker until a button is tapped */
+.aichasm-marker {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.aichasm-active .aichasm-marker {
+  opacity: 1;
+}
+.aichasm-active .aichasm-here {
+  opacity: 1;
+}
+.aichasm-expl {
+  font-family: var(--font-heading);
+  font-size: 0.55em;
+  color: var(--white);
+  text-align: center;
+  margin: 8px auto 6px;
+  max-width: 920px;
+  min-height: 2em;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.aichasm-rule {
+  margin: 0 auto;
+  font-size: 0.42em;
+  color: var(--white-dim);
+  text-align: center;
+  font-style: italic;
+  max-width: 900px;
+  line-height: 1.5;
+}
+
+/* === Slide 15: Bullseye Framework === */
+.bullseye-cite {
+  font-size: 0.45em;
+  color: var(--white-dim);
+  text-align: center;
+  margin: 0 auto 6px;
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+.bullseye {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+}
+.bullseye-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.bullseye-ring--outer {
+  inset: 9.3%;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.015);
+}
+.bullseye-ring--middle {
+  width: 65%;
+  height: 65%;
+  top: 17.5%;
+  left: 17.5%;
+  border: 1.5px solid rgba(255, 122, 41, 0.45);
+  background: rgba(255, 122, 41, 0.04);
+}
+.bullseye-ring--inner {
+  width: 32%;
+  height: 32%;
+  top: 34%;
+  left: 34%;
+  border: 2px solid var(--orange);
+  background: rgba(255, 122, 41, 0.18);
+  box-shadow: 0 0 22px rgba(255, 122, 41, 0.35), inset 0 0 16px rgba(255, 122, 41, 0.18);
+}
+.ring-label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.ring-label--outer {
+  top: 13.5%;
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.55);
+}
+.ring-label--middle {
+  top: 23%;
+  color: var(--orange);
+  opacity: 0.85;
+}
+.ring-label--inner {
+  top: 37%;
+  color: var(--orange);
+  letter-spacing: 0.18em;
+}
+.middle-dots {
+  position: absolute;
+  left: 50%;
+  top: 72%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 18px;
+}
+.bdot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 8px rgba(255, 122, 41, 0.55);
+}
+.bdot--main {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: var(--orange);
+  box-shadow: 0 0 16px rgba(255, 122, 41, 0.95), 0 0 32px rgba(255, 122, 41, 0.5);
+  animation: bdot-pulse 2.4s ease-in-out infinite;
+}
+@keyframes bdot-pulse {
+  0%, 100% { box-shadow: 0 0 18px rgba(255, 122, 41, 0.9), 0 0 36px rgba(255, 122, 41, 0.45); }
+  50% { box-shadow: 0 0 26px rgba(255, 122, 41, 1.0), 0 0 52px rgba(255, 122, 41, 0.65); }
+}
+.channel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: var(--font-heading);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--angle))
+    translateY(-195px)
+    rotate(calc(-1 * var(--angle)));
+}
+.bullseye-bottom {
+  margin: 12px auto 0;
+  font-family: var(--font-heading);
+  font-size: 0.85em;
+  font-weight: 800;
+  color: var(--orange);
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
 /* === Stat row (slide 26) === */
 .stat-row {
   display: flex;
